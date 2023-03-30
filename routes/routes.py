@@ -1,11 +1,11 @@
-from fastapi import FastAPI
+from fastapi import APIRouter
 
-app = FastAPI()
+router = APIRouter()
 
-@app.get("/health")
+@router.get("/health")
 async def get_health():
     return {"Health is OK"}
 
-@app.post("/predict/patient")
+@router.post("/predict/patient")
 async def get_result():
     return {"Positive +"}
