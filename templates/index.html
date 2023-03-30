@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8">
+	<title>Prédiction de la septicémie</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<div class="form-container">
+  <h2>Prediction de Sepsis</h2>
+  <form id="sepsis-form">
+    <div class="form-group">
+      <label for="temperature">Température:</label>
+      <input type="number" id="temperature" name="temperature" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="pression">Pression artérielle:</label>
+      <input type="number" id="pression" name="pression" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="freq-cardiaque">Fréquence cardiaque:</label>
+      <input type="number" id="freq-cardiaque" name="freq-cardiaque" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="freq-respiratoire">Fréquence respiratoire:</label>
+      <input type="number" id="freq-respiratoire" name="freq-respiratoire" required>
+    </div>
+    
+    <button type="submit">Predict</button>
+  </form>
+  <div id="result-container"></div>
+</div>
+
+
+
+	<div id="prediction-result"></div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>
+
+
