@@ -29,3 +29,39 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score
 print('Accuracy:', accuracy_score(y_test, y_pred))
 print('Precision:', precision_score(y_test, y_pred))
 print('Recall:', recall_score(y_test, y_pred))
+
+import joblib
+
+# Save the trained model to a file
+filename = 'sepsis_model.sav'
+joblib.dump(model, filename)
+
+def predict_sepsis(model, features):
+    # Convert the features into a dataframe
+    df = pd.DataFrame([features], columns=features.keys())
+
+    # Make the prediction using the loaded model
+    prediction = model.predict(df)
+
+    # Return the prediction
+    return prediction[0]
+
+# Define the features for Nicholas
+features = {
+    'PRG': 1,
+    'PL': 100,
+    'PR': 80,
+    'SK': 120,
+    'TS': 37,
+    'M11': 10,
+    'BD2': 10,
+    'Age': 50,
+}
+
+# Predict the Sepsis status for Nicholas
+prediction = predict_sepsis(joblib.load("sepsis_model.sav"), features)
+print(prediction)
+
+
+
+

@@ -3,6 +3,7 @@
 def preprocess(df):
     # Drop irrelevant columns
     df.drop('ID', axis=1, inplace=True)
+    df.drop('Insurance', axis=1, inplace=True)
 
     # Replace the values in the Sepssis column
     df['Sepsis'] = df['Sepsis'].replace('Negative', 0)
