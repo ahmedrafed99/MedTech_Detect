@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
-from data.preprocessing import preprocess
+from parser.preprocessing import preprocess
 
 # Load the CSV file into a Pandas dataframe
 df = pd.read_csv('../data/data_sepsis.csv')
@@ -45,22 +45,6 @@ def predict_sepsis(model, features):
 
     # Return the prediction
     return prediction[0]
-
-# Define the features for Nicholas
-features = {
-    'PRG': 1,
-    'PL': 100,
-    'PR': 80,
-    'SK': 120,
-    'TS': 37,
-    'M11': 10,
-    'BD2': 10,
-    'Age': 50,
-}
-
-# Predict the Sepsis status for Nicholas
-prediction = predict_sepsis(joblib.load("sepsis_model.sav"), features)
-print(prediction)
 
 
 
