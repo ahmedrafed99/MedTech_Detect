@@ -1,45 +1,63 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8">
+<head>
+	<meta charset="utf-8">
 	<title>Prédiction de la septicémie</title>
 	<link rel="stylesheet" href="style.css">
 </head>
-
+<body>
 <div class="form-container">
-  <h2>Prediction de Sepsis</h2>
-  <form id="sepsis-form">
-    <div class="form-group">
-      <label for="temperature">Température:</label>
-      <input type="number" id="temperature" name="temperature" required>
-    </div>
+	<h2>Prédiction de Sepsis</h2>
+	<form id="sepsis-form">
+		<div class="form-group">
+			<label for="prg">Entrer le PRG du patient :</label>
+			<input type="text" id="prg" name="prg" required>
+		</div>
+
+		<div class="form-group">
+			<label for="pl">Entrer le PL du patient :</label>
+			<input type="text" id="pl" name="pl" required>
+		</div>
+
+		<div class="form-group">
+			<label for="pr">Entrer le PR du patient :</label>
+			<input type="text" id="pr" name="pr" required>
+		</div>
+
+		<div class="form-group">
+			<label for="sk">Entrer le SK du patient :</label>
+			<input type="text" id="sk" name="sk" required>
+		</div>
+
+		<div class="form-group">
+			<label for="ts">Entrer le TS du patient :</label>
+			<input type="text" id="ts" name="ts" required>
+		</div>
+
+		<div class="form-group">
+			<label for="m11">Entrer le M11 du patient :</label>
+			<input type="text" id="m11" name="m11" required>
+		</div>
+
+		<div class="form-group">
+			<label for="bd2">Entrer le BD2 du patient :</label>
+			<input type="text" id="bd2" name="bd2" required>
+		</div>
+
+		<div class="form-group">
+			<label for="age">Entrer l'Age du patient :</label>
+			<input type="text" id="age" name="age" required>
+		</div>
+
+		<button type="submit">
+      <a href="predict.html">Prédire</a>
+    </button>
     
-    <div class="form-group">
-      <label for="pression">Pression artérielle:</label>
-      <input type="number" id="pression" name="pression" required>
-    </div>
-    
-    <div class="form-group">
-      <label for="freq-cardiaque">Fréquence cardiaque:</label>
-      <input type="number" id="freq-cardiaque" name="freq-cardiaque" required>
-    </div>
-    
-    <div class="form-group">
-      <label for="freq-respiratoire">Fréquence respiratoire:</label>
-      <input type="number" id="freq-respiratoire" name="freq-respiratoire" required>
-    </div>
-    
-    <button type="submit">Predict</button>
-  </form>
-  <div id="result-container"></div>
+	</form>
+	<div id="result-container"></div>
 </div>
 
-
-
-	<div id="prediction-result"></div>
-
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="script.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
-
-
