@@ -4,7 +4,7 @@ from sklearn.linear_model import LogisticRegression
 from parser.preprocessing import preprocess
 
 # Load the CSV file into a Pandas dataframe
-df = pd.read_csv('../data/data_sepsis.csv')
+df = pd.read_csv('data/data_sepsis.csv')
 
 df = preprocess(df)
 
@@ -33,7 +33,7 @@ print('Recall:', recall_score(y_test, y_pred))
 import joblib
 
 # Save the trained model to a file
-filename = 'sepsis_model.sav'
+filename = 'model/sepsis_model.sav'
 joblib.dump(model, filename)
 
 def predict_sepsis(model, features):
