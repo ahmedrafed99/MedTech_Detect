@@ -8,10 +8,10 @@
 <body>
 	<div class="form-container">
 		<h2>Prediction de Sepsis</h2>
-		<form onclick="initForm()" id="sepsis-form" action="/predict/patient" method="post">
+		<form  id="sepsis-form" action="/predict/patient" method="post">
 			<div class="form-group">
 				<label for="PRG">PRG:</label>
-				<input  type="number" id="PRG" name="PRG" step="any" autocomplete="on" required>
+				<input onclick="initForm()" type="number" id="PRG" name="PRG" step="any" autocomplete="on" required>
 			</div>
 
 			<div class="form-group">
