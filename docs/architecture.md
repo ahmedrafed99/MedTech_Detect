@@ -21,9 +21,9 @@ flowchart TD
     subgraph TRAIN ["① Training Pipeline"]
         direction LR
         A[("data_sepsis.csv - 608 ICU patients")]
-        B["Preprocessing - Drop ID & Insurance - Neg→0 / Pos→1"]
+        B["Preprocessing - Drop ID & Insurance - cast to float - Neg→0 / Pos→1"]
         C["Train / Test Split - 80% train · 20% test"]
-        D["Logistic Regression - model.fit()"]
+        D["train_model() - Logistic Regression - model.fit()"]
         A --> B --> C --> D
     end
 
@@ -33,16 +33,16 @@ flowchart TD
         E[("sepsis_model.sav - joblib")]
     end
 
-    E --> G
+    E --> H
 
     subgraph INFER ["② Inference Pipeline"]
         direction LR
-        F["HTTP Client - POST /predict/patient"]
-        G["FastAPI Router - routes/routes.py"]
+        F["Browser - GET /  - index.html form"]
+        G["FastAPI Router - routes/routes.py - Static files mounted"]
         H["Load Model - joblib.load()"]
         I["predict_sepsis() - model.predict(df)"]
-        J{{"Result: 0=Negative · 1=Positive"}}
-        F --> G --> H --> I --> J
+        J{{"JSON: Prediction 0 or 1"}}
+        F -->|"POST /predict/patient - Form data float x8"| G --> H --> I --> J
     end
 ```
 
@@ -73,10 +73,14 @@ flowchart LR
 
 ```
 MedTech_Detect/
-├── main.py                    ← FastAPI app entry point
-├── routes/routes.py           ← /health + /predict/patient endpoints
-├── model/training_model.py    ← train + save + predict_sepsis()
-├── parser/preprocessing.py    ← drop columns, encode target
+├── main.py                    ← FastAPI app, mounts /static
+├── routes/routes.py           ← GET / · GET /health · POST /predict/patient (Form)
+├── model/training_model.py    ← train_model() · predict_sepsis()
+├── parser/preprocessing.py    ← drop columns, cast to float, encode target
 ├── data/data_sepsis.csv       ← 608 ICU patient records
-└── model/sepsis_model.sav     ← saved logistic regression (joblib)
+├── model/sepsis_model.sav     ← saved logistic regression (joblib)
+├── static/style.css           ← frontend styles
+├── static/script.js           ← frontend logic
+├── templates/index.html       ← prediction form (Jinja2)
+└── tests/                     ← app_test.py · routes_test.py
 ```
