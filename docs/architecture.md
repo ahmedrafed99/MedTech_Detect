@@ -107,6 +107,41 @@ flowchart LR
 
 ---
 
+## Cloud Deployment Option — Vertex AI (GCP)
+
+Instead of self-hosting, Vertex AI covers most of the checklist above out of the box.
+
+### How current components map to Vertex AI
+
+| Current | Vertex AI equivalent |
+|---------|---------------------|
+| `sepsis_model.sav` (joblib) | **Model Registry** — versioned model storage |
+| FastAPI `/predict/patient` | **Vertex AI Endpoint** — managed REST API, auto-scales |
+| Manual retraining | **Vertex AI Pipelines** — scheduled or triggered retrains |
+| No monitoring | **Model Monitoring** — automatic prediction drift detection |
+| No audit trail | **Cloud Logging** — every prediction logged by default |
+| No HTTPS / auth | **IAM + API Gateway** — built-in auth and HTTPS |
+
+### Tradeoffs
+
+| | DIY (current) | Vertex AI |
+|--|---------------|-----------|
+| Cost | Free if self-hosted | Pay per prediction + endpoint uptime |
+| Control | Full | Limited to GCP interface |
+| Setup effort | Already done | Migration needed |
+| Scaling | Manual | Automatic |
+| HIPAA compliance | You handle it | GCP covers it via BAA |
+
+### Migration path
+
+1. Export model — already done (`sepsis_model.sav` is joblib-compatible with Vertex)
+2. Upload to **GCS bucket** → register in **Model Registry**
+3. Deploy to a **Vertex Endpoint**
+4. Update `routes/routes.py` to call the Vertex endpoint instead of `joblib.load()` locally
+5. Set up **Vertex Pipelines** for retraining on new data
+
+---
+
 ## File Map
 
 ```
