@@ -3,61 +3,60 @@
 <head>
 	<meta charset="utf-8">
 	<title>Prédiction de la septicémie</title>
-	<link rel="stylesheet" href="style.css">
+	<link href="{{ url_for('static', path='/style.css') }}" rel="stylesheet">
 </head>
 <body>
-<div class="form-container">
-	<h2>Prédiction de Sepsis</h2>
-	<form id="sepsis-form">
-		<div class="form-group">
-			<label for="prg">Entrer le PRG du patient :</label>
-			<input type="text" id="prg" name="prg" required>
-		</div>
+	<div class="form-container">
+		<h2>Prediction de Sepsis</h2>
+		<form  id="sepsis-form" action="/predict/patient" method="post">
+			<div class="form-group">
+				<label for="PRG">PRG:</label>
+				<input onclick="initForm()" type="number" id="PRG" name="PRG" step="any" autocomplete="on" required>
+			</div>
 
-		<div class="form-group">
-			<label for="pl">Entrer le PL du patient :</label>
-			<input type="text" id="pl" name="pl" required>
-		</div>
+			<div class="form-group">
+				<label for="PL">PL:</label>
+				<input type="number" id="PL" name="PL" step="any" autocomplete="on" required>
+			</div>
 
-		<div class="form-group">
-			<label for="pr">Entrer le PR du patient :</label>
-			<input type="text" id="pr" name="pr" required>
-		</div>
+			<div class="form-group">
+				<label for="PR">PR:</label>
+				<input type="number" id="PR" name="PR" step="any" autocomplete="on" required>
+			</div>
 
-		<div class="form-group">
-			<label for="sk">Entrer le SK du patient :</label>
-			<input type="text" id="sk" name="sk" required>
-		</div>
+			<div class="form-group">
+				<label for="SK">SK:</label>
+				<input type="number" id="SK" name="SK" step="any" autocomplete="on" required>
+			</div>
 
-		<div class="form-group">
-			<label for="ts">Entrer le TS du patient :</label>
-			<input type="text" id="ts" name="ts" required>
-		</div>
+			<div class="form-group">
+				<label for="TS">TS:</label>
+				<input type="number" id="TS" name="TS" step="any" autocomplete="on" required>
+			</div>
 
-		<div class="form-group">
-			<label for="m11">Entrer le M11 du patient :</label>
-			<input type="text" id="m11" name="m11" required>
-		</div>
+			<div class="form-group">
+				<label for="M11">M11:</label>
+				<input type="number" id="M11" name="M11" step="any" autocomplete="on" required>
+			</div>
 
-		<div class="form-group">
-			<label for="bd2">Entrer le BD2 du patient :</label>
-			<input type="text" id="bd2" name="bd2" required>
-		</div>
+			<div class="form-group">
+				<label for="BD2">BD2:</label>
+				<input type="number" id="BD2" name="BD2" step="any" autocomplete="on" required>
+			</div>
 
-		<div class="form-group">
-			<label for="age">Entrer l'Age du patient :</label>
-			<input type="text" id="age" name="age" required>
-		</div>
+			<div class="form-group">
+				<label for="Age">Age:</label>
+				<input type="number" id="Age" name="Age" step="any" autocomplete="on" required>
+			</div>
 
-		<button type="submit">
-      <a href="predict.html">Prédire</a>
-    </button>
-    
-	</form>
-	<div id="result-container"></div>
-</div>
+			<button type="submit">Predict</button>
+		</form>
+		<div id="result-container"></div>
+	</div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="script.js"></script>
+	<div id="prediction-result"></div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="{{ url_for('static', path='/script.js') }}"></script>
 </body>
 </html>

@@ -1,0 +1,275 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 540" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <!-- Chalk texture on strokes -->
+    <filter id="chalk" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.8" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <!-- Slightly rougher chalk for section labels -->
+    <filter id="chalkHeavy" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="4" stitchTiles="stitch" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <!-- Board texture overlay -->
+    <filter id="boardTexture">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="gray"/>
+      <feBlend in="SourceGraphic" in2="gray" mode="overlay" result="blend"/>
+      <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+    </filter>
+    <!-- Arrow markers - chalk white -->
+    <marker id="aw" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#e8e4d8" opacity="0.9"/>
+    </marker>
+    <!-- Arrow marker - yellow chalk -->
+    <marker id="ay" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#f5e642" opacity="0.85"/>
+    </marker>
+    <!-- Arrow marker - dashed model link -->
+    <marker id="ad" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#a8d8a8" opacity="0.85"/>
+    </marker>
+  </defs>
+
+  <!-- ── Blackboard background ── -->
+  <rect width="860" height="540" fill="#111" rx="0"/>
+  <!-- Subtle board texture -->
+  <rect width="860" height="540" fill="#1a1a1a" rx="0" opacity="0.5"/>
+  <!-- Very faint green tint of old chalkboard -->
+  <rect width="860" height="540" fill="#0d1a10" rx="0" opacity="0.35"/>
+
+  <!-- Chalk dust / smear effect along top -->
+  <rect x="0" y="0" width="860" height="3" fill="#e8e4d8" opacity="0.04"/>
+
+  <!-- ── TITLE ── -->
+  <text x="430" y="36" text-anchor="middle" font-size="19" font-weight="400"
+        fill="#f0ece0" opacity="0.95" letter-spacing="2" filter="url(#chalk)">
+    MedTech Detect — Sepsis Prediction System
+  </text>
+  <!-- chalk underline - hand-drawn look -->
+  <path d="M 185,44 Q 310,46 430,43 Q 570,40 675,44" stroke="#e8e4d8" stroke-width="1.2"
+        fill="none" opacity="0.5" filter="url(#chalk)"/>
+
+  <!-- ── SECTION LABEL: TRAINING ── -->
+  <text x="40" y="75" font-size="10" fill="#f5e642" opacity="0.75" letter-spacing="2"
+        font-weight="400" filter="url(#chalk)">① TRAINING PIPELINE</text>
+  <path d="M 40,79 L 820,79" stroke="#f5e642" stroke-width="0.7" opacity="0.2"
+        stroke-dasharray="4,3" filter="url(#chalk)"/>
+
+  <!-- ── BOX 1: CSV Data ── -->
+  <rect x="42" y="93" width="138" height="82" rx="2" fill="none"
+        stroke="#e8e4d8" stroke-width="1.4" opacity="0.7" filter="url(#chalk)"/>
+  <text x="111" y="114" text-anchor="middle" font-size="13" fill="#f0ece0"
+        opacity="0.95" font-weight="400" filter="url(#chalk)">CSV Data</text>
+  <path d="M 58,119 L 164,119" stroke="#e8e4d8" stroke-width="0.6" opacity="0.35" filter="url(#chalk)"/>
+  <text x="111" y="134" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">data/data_sepsis.csv</text>
+  <text x="111" y="149" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">608 ICU patients</text>
+  <text x="111" y="164" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">8 clinical features</text>
+
+  <!-- Arrow 1→2 -->
+  <path d="M 181,134 L 218,134" stroke="#e8e4d8" stroke-width="1.5"
+        fill="none" opacity="0.7" marker-end="url(#aw)" filter="url(#chalk)"/>
+
+  <!-- ── BOX 2: Preprocessing ── -->
+  <rect x="222" y="93" width="138" height="82" rx="2" fill="none"
+        stroke="#e8e4d8" stroke-width="1.4" opacity="0.7" filter="url(#chalk)"/>
+  <text x="291" y="114" text-anchor="middle" font-size="13" fill="#f0ece0"
+        opacity="0.95" filter="url(#chalk)">Preprocessing</text>
+  <path d="M 238,119 L 344,119" stroke="#e8e4d8" stroke-width="0.6" opacity="0.35" filter="url(#chalk)"/>
+  <text x="291" y="134" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">parser/preprocessing.py</text>
+  <text x="291" y="149" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">Drop ID, Insurance</text>
+  <text x="291" y="164" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">Encode Neg→0 / Pos→1</text>
+
+  <!-- Arrow 2→3 -->
+  <path d="M 361,134 L 398,134" stroke="#e8e4d8" stroke-width="1.5"
+        fill="none" opacity="0.7" marker-end="url(#aw)" filter="url(#chalk)"/>
+
+  <!-- ── BOX 3: Train/Test Split ── -->
+  <rect x="402" y="93" width="138" height="82" rx="2" fill="none"
+        stroke="#e8e4d8" stroke-width="1.4" opacity="0.7" filter="url(#chalk)"/>
+  <text x="471" y="114" text-anchor="middle" font-size="13" fill="#f0ece0"
+        opacity="0.95" filter="url(#chalk)">Train / Test Split</text>
+  <path d="M 418,119 L 524,119" stroke="#e8e4d8" stroke-width="0.6" opacity="0.35" filter="url(#chalk)"/>
+  <text x="471" y="134" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">train_test_split()</text>
+  <text x="471" y="149" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">80% train / 20% test</text>
+  <text x="471" y="164" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">random_state = 42</text>
+
+  <!-- Arrow 3→4 -->
+  <path d="M 541,134 L 578,134" stroke="#e8e4d8" stroke-width="1.5"
+        fill="none" opacity="0.7" marker-end="url(#aw)" filter="url(#chalk)"/>
+
+  <!-- ── BOX 4: Logistic Regression ── -->
+  <rect x="582" y="93" width="138" height="82" rx="2" fill="none"
+        stroke="#e8e4d8" stroke-width="1.4" opacity="0.7" filter="url(#chalk)"/>
+  <text x="651" y="114" text-anchor="middle" font-size="13" fill="#f0ece0"
+        opacity="0.95" filter="url(#chalk)">Logistic Regression</text>
+  <path d="M 598,119 L 704,119" stroke="#e8e4d8" stroke-width="0.6" opacity="0.35" filter="url(#chalk)"/>
+  <text x="651" y="134" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">model.fit(X_train, y_train)</text>
+  <text x="651" y="149" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">Accuracy · Precision</text>
+  <text x="651" y="164" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">Recall evaluated</text>
+
+  <!-- Arrow 4 → down to saved model -->
+  <path d="M 651,176 L 651,210" stroke="#e8e4d8" stroke-width="1.5"
+        fill="none" opacity="0.7" marker-end="url(#aw)" filter="url(#chalk)"/>
+
+  <!-- ── BOX 5: Saved Model ── -->
+  <rect x="582" y="212" width="138" height="56" rx="2" fill="none"
+        stroke="#f5e642" stroke-width="1.5" opacity="0.75" filter="url(#chalk)"/>
+  <text x="651" y="234" text-anchor="middle" font-size="12" fill="#f5e642"
+        opacity="0.9" filter="url(#chalk)">sepsis_model.sav</text>
+  <text x="651" y="251" text-anchor="middle" font-size="9.5" fill="#d4c850"
+        opacity="0.75" filter="url(#chalk)">joblib serialized model</text>
+  <text x="651" y="262" text-anchor="middle" font-size="9" fill="#b8ad44"
+        opacity="0.65" filter="url(#chalk)">model/sepsis_model.sav</text>
+
+  <!-- ── DIVIDER ── -->
+  <path d="M 40,296 Q 200,293 430,296 Q 640,299 820,296"
+        stroke="#e8e4d8" stroke-width="0.8" fill="none" opacity="0.25" filter="url(#chalk)"/>
+
+  <!-- ── SECTION LABEL: INFERENCE ── -->
+  <text x="40" y="314" font-size="10" fill="#a8d8a8" opacity="0.75" letter-spacing="2"
+        font-weight="400" filter="url(#chalk)">② INFERENCE PIPELINE</text>
+  <path d="M 40,318 L 820,318" stroke="#a8d8a8" stroke-width="0.7" opacity="0.2"
+        stroke-dasharray="4,3" filter="url(#chalk)"/>
+
+  <!-- ── BOX 6: HTTP Client ── -->
+  <rect x="42" y="330" width="138" height="82" rx="2" fill="none"
+        stroke="#e8e4d8" stroke-width="1.4" opacity="0.7" filter="url(#chalk)"/>
+  <text x="111" y="351" text-anchor="middle" font-size="13" fill="#f0ece0"
+        opacity="0.95" filter="url(#chalk)">HTTP Client</text>
+  <path d="M 58,356 L 164,356" stroke="#e8e4d8" stroke-width="0.6" opacity="0.35" filter="url(#chalk)"/>
+  <text x="111" y="371" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">POST /predict/patient</text>
+  <text x="111" y="386" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">JSON patient features</text>
+  <text x="111" y="401" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">8 clinical values</text>
+
+  <!-- Arrow 6→7 -->
+  <path d="M 181,371 L 218,371" stroke="#e8e4d8" stroke-width="1.5"
+        fill="none" opacity="0.7" marker-end="url(#aw)" filter="url(#chalk)"/>
+
+  <!-- ── BOX 7: FastAPI Router ── -->
+  <rect x="222" y="330" width="138" height="82" rx="2" fill="none"
+        stroke="#e8e4d8" stroke-width="1.4" opacity="0.7" filter="url(#chalk)"/>
+  <text x="291" y="351" text-anchor="middle" font-size="13" fill="#f0ece0"
+        opacity="0.95" filter="url(#chalk)">FastAPI Router</text>
+  <path d="M 238,356 L 344,356" stroke="#e8e4d8" stroke-width="0.6" opacity="0.35" filter="url(#chalk)"/>
+  <text x="291" y="371" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">routes/routes.py</text>
+  <text x="291" y="386" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">GET  /health</text>
+  <text x="291" y="401" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">POST /predict/patient</text>
+
+  <!-- Arrow 7→8 -->
+  <path d="M 361,371 L 398,371" stroke="#e8e4d8" stroke-width="1.5"
+        fill="none" opacity="0.7" marker-end="url(#aw)" filter="url(#chalk)"/>
+
+  <!-- ── BOX 8: Load Model ── -->
+  <rect x="402" y="330" width="138" height="82" rx="2" fill="none"
+        stroke="#e8e4d8" stroke-width="1.4" opacity="0.7" filter="url(#chalk)"/>
+  <text x="471" y="351" text-anchor="middle" font-size="13" fill="#f0ece0"
+        opacity="0.95" filter="url(#chalk)">Load Model</text>
+  <path d="M 418,356 L 524,356" stroke="#e8e4d8" stroke-width="0.6" opacity="0.35" filter="url(#chalk)"/>
+  <text x="471" y="371" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">joblib.load()</text>
+  <text x="471" y="386" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">sepsis_model.sav</text>
+  <text x="471" y="401" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">on each request</text>
+
+  <!-- Arrow 8→9 -->
+  <path d="M 541,371 L 578,371" stroke="#e8e4d8" stroke-width="1.5"
+        fill="none" opacity="0.7" marker-end="url(#aw)" filter="url(#chalk)"/>
+
+  <!-- ── BOX 9: predict_sepsis() ── -->
+  <rect x="582" y="330" width="138" height="82" rx="2" fill="none"
+        stroke="#e8e4d8" stroke-width="1.4" opacity="0.7" filter="url(#chalk)"/>
+  <text x="651" y="351" text-anchor="middle" font-size="13" fill="#f0ece0"
+        opacity="0.95" filter="url(#chalk)">predict_sepsis()</text>
+  <path d="M 598,356 L 704,356" stroke="#e8e4d8" stroke-width="0.6" opacity="0.35" filter="url(#chalk)"/>
+  <text x="651" y="371" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">model.predict(df)</text>
+  <text x="651" y="386" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">Returns 0 or 1</text>
+  <text x="651" y="401" text-anchor="middle" font-size="9.5" fill="#c8c4b8"
+        opacity="0.8" filter="url(#chalk)">Negative / Positive</text>
+
+  <!-- Arrow 9→10 -->
+  <path d="M 721,371 L 756,371" stroke="#e8e4d8" stroke-width="1.5"
+        fill="none" opacity="0.7" marker-end="url(#aw)" filter="url(#chalk)"/>
+
+  <!-- ── BOX 10: Result ── -->
+  <rect x="758" y="330" width="68" height="82" rx="2" fill="none"
+        stroke="#a8d8a8" stroke-width="1.5" opacity="0.75" filter="url(#chalk)"/>
+  <text x="792" y="357" text-anchor="middle" font-size="11" fill="#a8d8a8"
+        opacity="0.9" filter="url(#chalk)">Result</text>
+  <path d="M 766,362 L 818,362" stroke="#a8d8a8" stroke-width="0.6" opacity="0.4" filter="url(#chalk)"/>
+  <text x="792" y="381" text-anchor="middle" font-size="9" fill="#e87878"
+        opacity="0.85" filter="url(#chalk)">1 · Positive</text>
+  <text x="792" y="397" text-anchor="middle" font-size="9" fill="#a8d8a8"
+        opacity="0.85" filter="url(#chalk)">0 · Negative</text>
+
+  <!-- ── Dashed link: saved model → Load Model ── -->
+  <!-- horizontal leg from model box left edge to x=471 -->
+  <path d="M 582,240 L 471,240" stroke="#f5e642" stroke-width="1.2"
+        fill="none" opacity="0.5" stroke-dasharray="5,4" filter="url(#chalk)"/>
+  <!-- vertical leg down to Load Model box -->
+  <path d="M 471,240 L 471,329" stroke="#f5e642" stroke-width="1.2"
+        fill="none" opacity="0.5" stroke-dasharray="5,4" marker-end="url(#ay)" filter="url(#chalk)"/>
+  <!-- tiny label on dashed line -->
+  <text x="525" y="234" text-anchor="middle" font-size="8" fill="#f5e642"
+        opacity="0.55" filter="url(#chalk)">reused at inference</text>
+
+  <!-- ── INPUT FEATURES LEGEND ── -->
+  <path d="M 40,432 Q 200,429 430,432 Q 640,435 820,432"
+        stroke="#e8e4d8" stroke-width="0.6" fill="none" opacity="0.2" filter="url(#chalk)"/>
+  <text x="430" y="448" text-anchor="middle" font-size="10" fill="#e8e4d8"
+        opacity="0.45" letter-spacing="2" filter="url(#chalk)">INPUT FEATURES</text>
+
+  <!-- Feature tags - just underlined text, chalk style -->
+  <text x="72"  y="470" text-anchor="middle" font-size="10" fill="#e8e4d8" opacity="0.7" filter="url(#chalk)">PRG</text>
+  <path d="M 55,473 L 89,473" stroke="#e8e4d8" stroke-width="0.7" opacity="0.3" filter="url(#chalk)"/>
+
+  <text x="152" y="470" text-anchor="middle" font-size="10" fill="#e8e4d8" opacity="0.7" filter="url(#chalk)">PL · Glucose</text>
+  <path d="M 113,473 L 191,473" stroke="#e8e4d8" stroke-width="0.7" opacity="0.3" filter="url(#chalk)"/>
+
+  <text x="236" y="470" text-anchor="middle" font-size="10" fill="#e8e4d8" opacity="0.7" filter="url(#chalk)">PR · Blood Pressure</text>
+  <path d="M 198,473 L 274,473" stroke="#e8e4d8" stroke-width="0.7" opacity="0.3" filter="url(#chalk)"/>
+
+  <text x="336" y="470" text-anchor="middle" font-size="10" fill="#e8e4d8" opacity="0.7" filter="url(#chalk)">SK · Skin Thickness</text>
+  <path d="M 290,473 L 382,473" stroke="#e8e4d8" stroke-width="0.7" opacity="0.3" filter="url(#chalk)"/>
+
+  <text x="432" y="470" text-anchor="middle" font-size="10" fill="#e8e4d8" opacity="0.7" filter="url(#chalk)">TS · Insulin</text>
+  <path d="M 398,473 L 466,473" stroke="#e8e4d8" stroke-width="0.7" opacity="0.3" filter="url(#chalk)"/>
+
+  <text x="517" y="470" text-anchor="middle" font-size="10" fill="#e8e4d8" opacity="0.7" filter="url(#chalk)">M11 · BMI</text>
+  <path d="M 483,473 L 551,473" stroke="#e8e4d8" stroke-width="0.7" opacity="0.3" filter="url(#chalk)"/>
+
+  <text x="618" y="470" text-anchor="middle" font-size="10" fill="#e8e4d8" opacity="0.7" filter="url(#chalk)">BD2 · Diab. Pedigree</text>
+  <path d="M 559,473 L 677,473" stroke="#e8e4d8" stroke-width="0.7" opacity="0.3" filter="url(#chalk)"/>
+
+  <text x="724" y="470" text-anchor="middle" font-size="10" fill="#e8e4d8" opacity="0.7" filter="url(#chalk)">Age</text>
+  <path d="M 705,473 L 743,473" stroke="#e8e4d8" stroke-width="0.7" opacity="0.3" filter="url(#chalk)"/>
+
+  <!-- Bottom note -->
+  <text x="430" y="500" text-anchor="middle" font-size="9.5" fill="#e8e4d8"
+        opacity="0.35" letter-spacing="1" filter="url(#chalk)">Target: Sepsis   →   0 = Negative   |   1 = Positive</text>
+
+  <!-- Corner chalk smudge decoration -->
+  <ellipse cx="18" cy="18" rx="12" ry="8" fill="#e8e4d8" opacity="0.03" filter="url(#chalkHeavy)"/>
+  <ellipse cx="842" cy="522" rx="12" ry="8" fill="#e8e4d8" opacity="0.03" filter="url(#chalkHeavy)"/>
+</svg>
